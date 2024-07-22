@@ -1,0 +1,59 @@
+package com.example.demo;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.example.demo.beans.Patient;
+import com.example.demo.repository.PatientRepo;
+import com.example.demo.services.PatientServices;
+
+@SpringBootTest(classes= {ServicesTestMockito.class})
+public class ServicesTestMockito {
+	
+	@Mock
+	PatientRepo newRepo;
+	
+	@InjectMocks
+	PatientServices newService;
+	
+	public List<Patient> testPatients;
+	
+	@Test
+	@Order(1)
+	public void test_GetAllPatients()
+	{
+		List<Patient> testPatients = new ArrayList<Patient>();
+		testPatients.add(new Patient(1,"Test1",28));
+		testPatients.add(new Patient(2,"Test2",60));
+		
+		when(newRepo.findAll()).thenReturn(testPatients);
+		assertEquals(2,newService.getAllPatients().size());
+	}
+	
+	@Test 
+	@Order(2)
+	public void test_GetPatientById()
+	{
+		/*
+		 * List<Patient> testPatients = new ArrayList<Patient>(); testPatients.add(new
+		 * Patient(1,"Test1",28)); testPatients.add(new Patient(2,"Test2",60));
+		 */
+		Patient TestPatient = new Patient(1,"Test",29);
+		
+		Integer id = 1;
+		when(newRepo.findById(id).get()).thenReturn(TestPatient);
+		assertEquals(1,newService.getPatientById(1).getPatientID());
+	}
+	
+	
+
+}
