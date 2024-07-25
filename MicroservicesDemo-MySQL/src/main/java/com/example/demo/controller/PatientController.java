@@ -94,8 +94,5 @@ public class PatientController {
 	}
 	
 	
-	
-	
-	
 
 }

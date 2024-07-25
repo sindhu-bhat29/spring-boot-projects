@@ -17,18 +17,20 @@ import org.springframework.http.ResponseEntity;
 
 import com.example.demo.beans.Patient;
 import com.example.demo.services.PatientServices;
-import com.example.demo.controller.PatientController;
 import com.example.demo.controller.AddResponse;
+import com.example.demo.controller.PatientController;
+
 
 @SpringBootTest(classes= {ControllerTestMackito.class})
 public class ControllerTestMackito {
 	
-	@Mock
-	PatientServices newService;
-	
-	
-	@InjectMocks
-	PatientController newController;
+
+    @Mock 
+    PatientServices newService;
+    
+    @InjectMocks
+    PatientController newController;
+    
 	
 	List<Patient> testPatients;
 	
