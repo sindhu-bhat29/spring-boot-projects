@@ -1,9 +1,0 @@
-package com.example.demo.controller;
-
-public class AddResponse {
-	
-	int Id;
-	String msg;
-	
-
-}
